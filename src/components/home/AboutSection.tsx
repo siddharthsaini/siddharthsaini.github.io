@@ -8,7 +8,7 @@ export default function AboutSection() {
           UKG
         </Link>{' '}Ready.</p>
       <p>
-        I live in New Delhi and enjoy building things, learning how they work and turning ideas into things that work! Occasionally writing about whatever has caught my attention.
+        I live in New Delhi and enjoy building things and turning ideas into things that work! Occasionally writing about whatever has caught my attention.
       </p>
       <p>
         I'm also into{' '}
