@@ -1,0 +1,132 @@
+---
+title: "Lorem Ipsum"
+slug: "lorem-ipsum"
+date: "2026-09-13"
+description: "A lorem ipsum sampler that exercises every kind of text formatting and image markup this blog supports."
+tags: ["lorem-ipsum", "reference", "markdown"]
+---
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
+et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat.
+
+## Headings
+
+### Third-level heading
+
+#### Fourth-level heading
+
+##### Fifth-level heading
+
+## Inline formatting
+
+**Bold text**, _italic text_, **_bold and italic_**, ~~struck-through text~~, and `inline code`.
+
+You can mix them — a **bold phrase containing _an italic run_** — and add an
+[inline link](https://example.com) or a bare autolink such as https://example.com.
+
+Keyboard keys look like <kbd>⌘</kbd> + <kbd>K</kbd>, you can <mark>highlight a phrase</mark>, and
+use <sup>superscript</sup> or <sub>subscript</sub> for footnote-style markers.
+
+## Lists
+
+An unordered list with nesting:
+
+- Lorem ipsum dolor sit amet
+- Consectetur adipiscing elit
+  - Nested item one
+  - Nested item two
+    - Deeper still
+- Sed do eiusmod tempor
+
+An ordered list with nesting:
+
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+   1. Nested ordered item
+   2. Another nested item
+3. Sed do eiusmod tempor
+
+A GitHub-style task list:
+
+- [x] Write the sampler
+- [x] Cover GFM task lists
+- [ ] Proofread it
+
+## Blockquotes
+
+> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+>
+> > Nested blockquotes work as well.
+>
+> — Someone, probably
+
+## Tables
+
+| Format | Syntax       | Result                |
+| ------ | :----------: | --------------------: |
+| Bold   | `**text**`   | **text**              |
+| Italic | `_text_`     | _text_                |
+| Strike | `~~text~~`   | ~~text~~              |
+| Code   | `` `text` `` | `text`                |
+
+## Code
+
+Inline code looks like `npm run photos`, and fenced blocks get syntax highlighting:
+
+```ts title="greet.ts" {1,3}
+export function greet(name: string): string {
+  const message = `Hello, ${name}!`
+  return message
+}
+```
+
+Line ranges in the meta string highlight specific lines, like `{2}` here:
+
+```bash {2}
+npm run photos
+npm run build
+```
+
+## Images
+
+A plain Markdown image with alt text:
+
+![Mountains and a lake at dusk](https://wallpaperaccess.com/full/30216050.png)
+
+The same image, linked to another page:
+
+[![An anime-style cityscape](https://images.alphacoders.com/139/thumb-1920-1399725.jpg)](https://example.com)
+
+Markdown images can also carry a title, which browsers show on hover:
+
+![A webp sample](https://pbs.twimg.com/media/HEfX3hgbMAAGhBw?format=webp&name=medium "Twitter-hosted webp")
+
+A `<figure>` gives you a real caption below the image:
+
+<figure>
+<img src="https://wallpaperaccess.com/full/30216050.png" alt="Mountains reflected in a lake" />
+<figcaption>Lorem ipsum dolor sit amet — a caption rendered with <code>figcaption</code>.</figcaption>
+</figure>
+
+## Footnotes
+
+Lorem ipsum dolor sit amet.[^lorem] Consectetur adipiscing elit, sed do eiusmod tempor.[^ipsum]
+
+[^lorem]: The first footnote definition.
+[^ipsum]: The second one, which can contain [links](https://example.com) too.
+
+## Collapsible section
+
+<details>
+<summary>Click to expand</summary>
+
+Hidden content, written in Markdown, revealed on demand.
+
+</details>
+
+## Horizontal rule
+
+---
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fin.
