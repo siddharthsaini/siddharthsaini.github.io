@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build && node scripts/postbuild.mjs",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "photos": "node scripts/optimize-photos.mjs"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.1",

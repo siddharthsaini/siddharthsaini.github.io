@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { Photo } from '../../lib/photos'
+import type { Photo } from 'virtual:photos'
 
 const MIN_SCALE = 1
 const MAX_SCALE = 5

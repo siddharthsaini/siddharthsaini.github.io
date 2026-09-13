@@ -1,5 +1,5 @@
 import { useState, useSyncExternalStore } from 'react'
-import { photos, type Photo } from '../../lib/photos'
+import { photos, type Photo } from 'virtual:photos'
 import captions from '../../data/captions.json'
 import PhotoViewer from './PhotoViewer'
 
