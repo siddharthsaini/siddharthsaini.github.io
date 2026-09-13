@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useSyncExternalStore } from 'react'
 import { photos, type Photo } from '../../lib/photos'
 import captions from '../../data/captions.json'
 import PhotoViewer from './PhotoViewer'
@@ -15,38 +15,80 @@ function shuffle(items: Photo[]): Photo[] {
   return copy
 }
 
+/** Tailwind's `sm` breakpoint: 3 columns from 640px up, 2 below. */
+function useIsWide() {
+  return useSyncExternalStore(
+    (onChange) => {
+      const query = window.matchMedia('(min-width: 640px)')
+      query.addEventListener('change', onChange)
+      return () => query.removeEventListener('change', onChange)
+    },
+    () => window.matchMedia('(min-width: 640px)').matches,
+    () => false,
+  )
+}
+
+/**
+ * Pack the photos into `count` columns, always appending to the shortest one.
+ * Heights come from the manifest, so this needs no measuring and both columns
+ * start at the same top edge.
+ */
+function buildColumns(items: Photo[], count: number): Photo[][] {
+  const columns: Photo[][] = Array.from({ length: count }, () => [])
+  const heights = new Array<number>(count).fill(0)
+
+  for (const photo of items) {
+    let target = 0
+    for (let i = 1; i < count; i += 1) {
+      if (heights[i] < heights[target]) target = i
+    }
+    columns[target].push(photo)
+    heights[target] += photo.height / photo.width
+  }
+
+  return columns
+}
+
 export default function PhotoCollage() {
   const [order] = useState(() => shuffle(photos))
-  const [active, setActive] = useState<number | null>(null)
+  const [active, setActive] = useState<Photo | null>(null)
+  const columns = buildColumns(order, useIsWide() ? 3 : 2)
 
   return (
     <>
-      <div className="columns-2 gap-2 sm:columns-3">
-        {order.map((photo, index) => (
-          <button
-            key={photo.src}
-            type="button"
-            onClick={() => setActive(index)}
-            aria-label={`Open photo ${index + 1} of ${order.length}`}
-            className="group relative mb-2 block w-full cursor-pointer break-inside-avoid overflow-hidden rounded-lg bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500"
-            style={{ aspectRatio: `${photo.width} / ${photo.height}` }}
+      <div className="flex items-start gap-2">
+        {columns.map((column, columnIndex) => (
+          <div
+            key={columnIndex}
+            className="flex min-w-0 flex-1 flex-col gap-2"
           >
-            <img
-              src={photo.src}
-              alt=""
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:opacity-90"
-            />
-          </button>
+            {column.map((photo) => (
+              <button
+                key={photo.src}
+                type="button"
+                onClick={() => setActive(photo)}
+                aria-label={`Open photo ${order.indexOf(photo) + 1} of ${order.length}`}
+                className="group relative block w-full cursor-pointer overflow-hidden rounded-lg bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500"
+                style={{ aspectRatio: `${photo.width} / ${photo.height}` }}
+              >
+                <img
+                  src={photo.src}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:opacity-90"
+                />
+              </button>
+            ))}
+          </div>
         ))}
       </div>
 
-      {active !== null && (
+      {active && (
         <PhotoViewer
-          key={order[active].src}
-          photo={order[active]}
-          caption={captionMap[order[active].file] ?? ''}
+          key={active.src}
+          photo={active}
+          caption={captionMap[active.file] ?? ''}
           onClose={() => setActive(null)}
         />
       )}
