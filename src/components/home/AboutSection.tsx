@@ -8,7 +8,7 @@ export default function AboutSection() {
           UKG Ready
         </Link>.</p>
       <p>
-        Based in Delhi and enjoy building and turning ideas into things that work! Occasionally writing about whatever has caught my attention.
+        Based in Delhi, I enjoy building and turning ideas into things that work! Occasionally writing about whatever has caught my attention.
       </p>
       <p>
         I'm also into{' '}
