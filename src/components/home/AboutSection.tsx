@@ -4,9 +4,9 @@ export default function AboutSection() {
   return (
     <section id="about" className="space-y-8">
       <p>I'm a software engineer, building systems that power{' '}
-        <Link to="https://ukg.com/" className="underline underline-offset-2">
-          UKG
-        </Link>{' '}Ready.</p>
+        <Link to="https://www.ukg.com/products/ukg-ready" className="underline underline-offset-2">
+          UKG Ready
+        </Link>.</p>
       <p>
         Based in Delhi and enjoy building and turning ideas into things that work! Occasionally writing about whatever has caught my attention.
       </p>
